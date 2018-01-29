@@ -52,7 +52,8 @@ var requestOptions = {
   
 })
 
-app.get('/profile',function(req,res){
+app.get('/profile/:id',function(req,res){
+  var auth_token = req.params.id;
   var authority = "Bearer " + auth_token;
   var url = "https://auth.biodegrade88.hasura-app.io/v1/user/info";
   var requestOptions = {
@@ -101,6 +102,7 @@ app.get('/profile',function(req,res){
         .then(function(reslt) {
           var userinfo = {}
           userinfo.username = username;
+          userinfo.auth_token = auth_token;
           userinfo.files = reslt;
           console.log(userinfo);
           res.send(userinfo);
@@ -140,10 +142,16 @@ app.post('/login',function(req,res){
     return response.json();
     })
   .then(function(result) {
-      res.send(result);
+    if(result.auth_token){
+      var reurl = "/profile" + result.auth_token;
+      res.redirect(303,reurl);
       // To save the auth token received to offline storage
       // var authToken = result.auth_token
-      // window.localStorage.setItem('HASURA_AUTH_TOKEN', authToken); 
+      // window.localStorage.setItem('HASURA_AUTH_TOKEN', authToken);
+      }
+    else{
+      res.send(result);
+    }  
     })
   .catch(function(error) {
     console.log('Request Failed:' + error);
@@ -153,8 +161,8 @@ app.post('/login',function(req,res){
 app.post('/signup',function(req,res){
   var url = "https://auth.biodegrade88.hasura-app.io/v1/signup";
 
-  var sign_email= req.body.username;
-  var sign_pass= req.body.password;
+  var sign_email= req.body.data.username;
+  var sign_pass= req.body.data.password;
 var requestOptions = {
     "method": "POST",
     "headers": {
@@ -177,12 +185,16 @@ fetchAction(url, requestOptions)
 	return response.json();
 })
 .then(function(result) {
-  
+  if(result.auth_token){
+    var reurl = "/profile" + result.auth_token;
+    res.redirect(303,reurl);
+    // To save the auth token received to offline storage
+    // var authToken = result.auth_token
+    // window.localStorage.setItem('HASURA_AUTH_TOKEN', authToken);
+    }
+  else{
     res.send(result);
-
-	// To save the auth token received to offline storage
-	// var authToken = result.auth_token
-	// window.localStorage.setItem('HASURA_AUTH_TOKEN', authToken);
+  }  
 })
 .catch(function(error) {
 	console.log('Request Failed:' + error);
