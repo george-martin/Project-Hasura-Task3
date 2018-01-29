@@ -52,8 +52,8 @@ var requestOptions = {
   
 })
 
-app.get('/profile/:id',function(req,res){
-  var auth_token = req.params.id;
+app.get('/profile',function(req,res){
+  var auth_token;
   var authority = "Bearer " + auth_token;
   var url = "https://auth.biodegrade88.hasura-app.io/v1/user/info";
   var requestOptions = {
@@ -142,16 +142,7 @@ app.post('/login',function(req,res){
     return response.json();
     })
   .then(function(result) {
-    if(result.auth_token){
-      var reurl = "/profile" + result.auth_token;
-      res.redirect(303,reurl);
-      // To save the auth token received to offline storage
-      // var authToken = result.auth_token
-      // window.localStorage.setItem('HASURA_AUTH_TOKEN', authToken);
-      }
-    else{
-      res.send(result);
-    }  
+    res.send(result)  
     })
   .catch(function(error) {
     console.log('Request Failed:' + error);
@@ -185,16 +176,7 @@ fetchAction(url, requestOptions)
 	return response.json();
 })
 .then(function(result) {
-  if(result.auth_token){
-    var reurl = "/profile" + result.auth_token;
-    res.redirect(303,reurl);
-    // To save the auth token received to offline storage
-    // var authToken = result.auth_token
-    // window.localStorage.setItem('HASURA_AUTH_TOKEN', authToken);
-    }
-  else{
-    res.send(result);
-  }  
+  res.send(result);  
 })
 .catch(function(error) {
 	console.log('Request Failed:' + error);
