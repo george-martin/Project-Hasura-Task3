@@ -118,8 +118,8 @@ app.get('/profile',function(req,res){
 
 app.post('/login',function(req,res){
   var url = "https://auth.biodegrade88.hasura-app.io/v1/login";
-  var sign_email= req.body.username;
-  var sign_pass= req.body.password;
+  var sign_email= req.body.data.username;
+  var sign_pass= req.body.data.password;
   var requestOptions = {
     "method": "POST",
     "headers": {
