@@ -118,8 +118,8 @@ app.get('/profile',function(req,res){
 
 app.post('/login',function(req,res){
   var url = "https://auth.biodegrade88.hasura-app.io/v1/login";
-  var sign_email= req.body.s_email;
-  var sign_pass= req.body.s_pass;
+  var sign_email= req.body.username;
+  var sign_pass= req.body.password;
   var requestOptions = {
     "method": "POST",
     "headers": {
@@ -153,8 +153,8 @@ app.post('/login',function(req,res){
 app.post('/signup',function(req,res){
   var url = "https://auth.biodegrade88.hasura-app.io/v1/signup";
 
-  var sign_email= req.body.s_email;
-  var sign_pass= req.body.s_pass;
+  var sign_email= req.body.username;
+  var sign_pass= req.body.password;
 var requestOptions = {
     "method": "POST",
     "headers": {
