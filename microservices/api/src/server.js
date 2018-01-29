@@ -53,7 +53,7 @@ var requestOptions = {
 })
 
 app.get('/profile',function(req,res){
-  var auth_token;
+  var auth_token = req.body.data.auth_token;
   var authority = "Bearer " + auth_token;
   var url = "https://auth.biodegrade88.hasura-app.io/v1/user/info";
   var requestOptions = {
