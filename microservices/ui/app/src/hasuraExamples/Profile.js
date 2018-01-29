@@ -18,7 +18,10 @@ import { saveOffline, getSavedToken } from './config';
         };
         fetch(url, requestOptions)
         .then(function(response) {
-            console.log(response.json());
+            return response.json();
+        })
+        .then(function(result){
+            console.log(result.files);
         })
         .catch(function(error) {
             console.log('Request Failed:' + error);
