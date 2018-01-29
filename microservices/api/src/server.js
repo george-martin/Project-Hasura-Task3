@@ -23,6 +23,7 @@ app.get('/',function(req,res){
   res.send("heyyy");
 })
 app.get('/logout',function(req,res){ 
+var auth_token = req.body.data.auth_token;
 var url = "https://auth.biodegrade88.hasura-app.io/v1/user/logout";
 
 var authority = "Bearer " + auth_token;
