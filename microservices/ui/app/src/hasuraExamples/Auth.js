@@ -56,7 +56,6 @@ class Auth extends React.Component {
     this.showProgressIndicator(true)
     authenticateUser(this.state.username, this.state.password, true).then(authResponse => {
       this.showProgressIndicator(false)
-      console.log(authResponse);
       if (authResponse.auth_token) {
         saveOffline(authResponse.auth_token)
         this.showAlert("SignUp Successful! \n Your auth credentials are: " + JSON.stringify(authResponse, null, 2))
