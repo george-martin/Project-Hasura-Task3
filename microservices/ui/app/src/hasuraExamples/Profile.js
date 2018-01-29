@@ -6,7 +6,7 @@ import { saveOffline, getSavedToken } from './config';
         var url = "https://api.biodegrade88.hasura-app.io/profile"
         var token = getSavedToken();
         var requestOptions = {
-            method: "GET",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
