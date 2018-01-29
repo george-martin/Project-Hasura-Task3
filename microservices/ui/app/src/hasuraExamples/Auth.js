@@ -8,7 +8,7 @@ import Subheader from 'material-ui/Subheader';
 import LinearProgress from 'material-ui/LinearProgress';
 import { saveOffline, getSavedToken } from './config';
 import { authenticateUser } from './api';
-import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router-dom';
 
 const textfieldStyle = {
   width: 300
