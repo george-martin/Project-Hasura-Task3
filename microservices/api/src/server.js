@@ -19,7 +19,9 @@ app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
+app.get('/',function(req,res){
+  res.send("heyyy");
+})
 app.get('/logout',function(req,res){ 
 var url = "https://auth.biodegrade88.hasura-app.io/v1/user/logout";
 
