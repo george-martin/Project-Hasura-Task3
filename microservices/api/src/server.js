@@ -102,7 +102,6 @@ app.get('/profile',function(req,res){
         .then(function(reslt) {
           var userinfo = {}
           userinfo.username = username;
-          userinfo.auth_token = auth_token;
           userinfo.files = reslt;
           console.log(userinfo);
           res.send(userinfo);

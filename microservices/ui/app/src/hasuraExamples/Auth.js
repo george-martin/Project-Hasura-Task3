@@ -8,7 +8,7 @@ import Subheader from 'material-ui/Subheader';
 import LinearProgress from 'material-ui/LinearProgress';
 import { saveOffline, getSavedToken } from './config';
 import { authenticateUser } from './api';
-
+import { browserHistory } from 'react-router';
 
 const textfieldStyle = {
   width: 300
@@ -43,7 +43,8 @@ class Auth extends React.Component {
       if (authResponse.auth_token) {
         //Save the auth token offline to be used by the filestore service
         saveOffline(authResponse.auth_token)
-        this.showAlert("Login Successful! \n Your auth credentials are: " + JSON.stringify(authResponse, null, 2));
+        const path = '/profile'
+        browserHistory.push(path)
       } else {
         this.showAlert(JSON.stringify(authResponse));
       }
