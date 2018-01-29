@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Data } from './Data';
 import { Auth } from './Auth';
 import { Filestore } from './Filestore';
-import {Profile} from './Profile'
+import {Profile} from './Profile';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class HasuraExampleApp extends React.Component {
