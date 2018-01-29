@@ -8,8 +8,8 @@ import Subheader from 'material-ui/Subheader';
 import LinearProgress from 'material-ui/LinearProgress';
 import { saveOffline, getSavedToken } from './config';
 import { authenticateUser } from './api';
-import { browserHistory } from 'react-router';
-import Profile from './Profile';
+import { withRouter } from 'react-router-dom'
+
 const textfieldStyle = {
   width: 300
 }
@@ -44,7 +44,7 @@ class Auth extends React.Component {
         //Save the auth token offline to be used by the filestore service
         saveOffline(authResponse.auth_token)
         const path = '/profile'
-        browserHistory.push(path)
+        this.props.history.push('/profile')
       } else {
         this.showAlert(JSON.stringify(authResponse));
       }
