@@ -40,13 +40,13 @@ class Auth extends React.Component {
     authenticateUser(this.state.username, this.state.password, false).then(authResponse => {
       this.showProgressIndicator(false)
       console.log(authResponse);
-      if (authResponse.auth_token) {
+    //  if (authResponse.auth_token) {
         //Save the auth token offline to be used by the filestore service
-        saveOffline(authResponse.auth_token)
+     //   saveOffline(authResponse.auth_token)
         this.showAlert("Login Successful! \n Your auth credentials are: " + JSON.stringify(authResponse, null, 2));
-      } else {
-        this.showAlert(JSON.stringify(authResponse));
-      }
+    //  } else {
+    //    this.showAlert(JSON.stringify(authResponse));
+   //   }
     });
   }
 
